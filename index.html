@@ -1,24 +1,42 @@
+<!-- Definición del documento HTML -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Pedidos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="pedidos.js" defer></script>
+    <!-- Metadatos del documento -->
+    <meta charset="UTF-8"> <!-- Codificación de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Escala para dispositivos móviles -->
+    <title>Gestión de Pedidos</title> <!-- Título de la página -->
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace a la hoja de estilos externa -->
 </head>
 <body>
+    <!-- Encabezado principal de la página -->
     <h1>Gestión de Pedidos</h1>
+
+    <!-- Formulario para agregar pedidos -->
     <form id="pedido-form">
+        <!-- Campo para seleccionar un producto -->
         <label for="producto">Producto:</label>
-        <input type="text" id="producto" name="producto" required>
+        <select id="catalogo-productos" name="producto" required>
+            <!-- Opción predeterminada deshabilitada -->
+            <option value="" disabled selected>Seleccione un producto</option>
+        </select>
+
+        <!-- Campo para especificar la cantidad del producto -->
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" required>
+        <input type="number" id="cantidad" name="cantidad" min="1" required>
+
+        <!-- Botón para enviar el formulario y agregar el pedido -->
         <button type="submit">Agregar Pedido</button>
     </form>
-    <h2>Pedidos Realizados</h2>
-    <ul id="lista-pedidos"></ul>
+
+    <!-- Sección para mostrar la lista de pedidos -->
+    <h2>Lista de Pedidos</h2>
+    <ul id="lista-pedidos"></ul> <!-- Lista dinámica de pedidos -->
+
+    <!-- Sección para mostrar el total de la compra -->
+    <h3 id="total-compra">Total: $0</h3> <!-- Muestra el monto total acumulado -->
+
+    <!-- Enlace al archivo JavaScript para manejar la lógica de la página -->
+    <script src="pedidos.js"></script>
 </body>
 </html>
-
