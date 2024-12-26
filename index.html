@@ -4,21 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Pedidos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="pedidos.js" defer></script>
 </head>
 <body>
     <h1>Gestión de Pedidos</h1>
+
     <form id="pedido-form">
         <label for="producto">Producto:</label>
-        <input type="text" id="producto" name="producto" required>
+        <select id="catalogo-productos" name="producto" required>
+            <option value="" disabled selected>Seleccione un producto</option>
+        </select>
+
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" required>
+        <input type="number" id="cantidad" name="cantidad" min="1" required>
+
         <button type="submit">Agregar Pedido</button>
     </form>
-    <h2>Pedidos Realizados</h2>
+
+    <h2>Lista de Pedidos</h2>
     <ul id="lista-pedidos"></ul>
+
+    <h3 id="total-compra">Total: $0</h3>
+
+    <!-- Botón para proceder con el pago -->
+    <button id="proceder-pago" style="display:none;">Proceder con el Pago</button>
+
+    <!-- Formulario de Pago -->
+    <form id="pago-form" style="display: none;">
+        <label for="metodo-pago">Método de Pago:</label>
+        <select id="metodo-pago" required>
+            <option value="" disabled selected>Seleccione un método de pago</option>
+            <option value="transferencia">Transferencia Bancaria</option>
+            <option value="tarjeta">Tarjeta Bancaria</option>
+        </select>
+        <div id="error-metodo-pago" class="error-message" style="display:none;">Por favor, selecciona un método de pago.</div>
+
+        <!-- Formulario para Transferencia Bancaria -->
+        <div id="form-transferencia" style="display: none;">
+            <label for="banco">Banco:</label>
+            <input type="text" id="banco" name="banco">
+            <div id="error-banco" class="error-message" style="display:none;">El campo Banco es obligatorio.</div>
+
+            <label for="numero-cuenta">Número de cuenta:</label>
+            <input type="text" id="numero-cuenta" name="numero-cuenta">
+            <div id="error-numero-cuenta" class="error-message" style="display:none;">El campo Número de cuenta es obligatorio.</div>
+
+            <label for="monto-transferencia">Monto:</label>
+            <input type="text" id="monto-transferencia" name="monto-transferencia">
+            <div id="error-monto-transferencia" class="error-message" style="display:none;">El monto es obligatorio y debe ser un número válido.</div>
+
+            <button type="submit">Realizar Transferencia</button>
+        </div>
+
+        <!-- Formulario para pago con Tarjeta -->
+        <div id="form-tarjeta" style="display: none;">
+            <label for="tarjeta-numero">Número de tarjeta:</label>
+            <input type="text" id="tarjeta-numero" name="tarjeta-numero">
+            <div id="error-tarjeta-numero" class="error-message" style="display:none;">El campo Número de tarjeta es obligatorio.</div>
+
+            <label for="fecha-expiracion">Fecha de expiración:</label>
+            <input type="month" id="fecha-expiracion" name="fecha-expiracion">
+            <div id="error-fecha-expiracion" class="error-message" style="display:none;">La fecha de expiración es obligatoria.</div>
+
+            <label for="codigo-seguridad">Código de seguridad:</label>
+            <input type="text" id="codigo-seguridad" name="codigo-seguridad">
+            <div id="error-codigo-seguridad" class="error-message" style="display:none;">El código de seguridad es obligatorio.</div>
+
+            <button type="submit">Pagar con Tarjeta</button>
+        </div>
+    </form>
+
+    <script src="pedidos.js"></script>
 </body>
 </html>
-
